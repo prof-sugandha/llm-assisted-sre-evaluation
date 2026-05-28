@@ -1,0 +1,24 @@
+Asset_ID, Asset_Name, Asset_Type, Tools/Techniques, Criticality, Justification
+A1, User credentials (username and password), Credential, Not Specified, High, Compromise allows impersonation of any user, leading to unauthorized access to all patient data.
+A2, Active session state, State, Not Specified, High, Session hijacking enables impersonation and bypass of authentication controls.
+A3, Account lockout state (per-user failed attempts and lockout expiry), State, Not Specified, Medium, Manipulation could cause denial of service (lockout) or allow brute force (reset of lockout).
+A4, IP lockout state (per-IP failed attempts and lockout expiry), State, Not Specified, Medium, Manipulation could cause denial of service for legitimate users sharing an IP or allow brute force.
+A5, User account data (MID, role, enabled flag), Data, Not Specified, High, Integrity and confidentiality of role assignments affect access control; disabling accounts affects availability.
+A6, Transaction logs (entries with MID, secondary MID, timestamp, transaction type), Data, Not Specified, High, Logs are critical for forensic analysis of inappropriate access to PHI; tampering or unauthorized viewing undermines accountability.
+A7, Patient demographics (name, address, DOB, etc.), Data, Not Specified, High, Contains directly identifiable PHI; confidentiality and integrity are legally and ethically required.
+A8, HCP demographics (similar to patient demographics), Data, Not Specified, Medium, Personal information of providers but less sensitive than patient data; still subject to privacy expectations.
+A9, Hospital records (name, address, state, zip), Data, Not Specified, Low, Public-facing facility information; integrity may affect operational correctness but not patient privacy.
+A10, Appointment request data (HCP, date, time, comments, type, approval status), Data, Not Specified, Medium, Contains schedule and patient-provider relationship; unauthorized modification could disrupt care.
+A11, Office visit data (notes, date, time, patient, hospital, appointment type), Data, Not Specified, High, Core clinical record; confidentiality and integrity critical for patient safety and privacy.
+A12, Basic health metrics (height, weight, blood pressure, cholesterol, smoking status), Data, Not Specified, High, Sensitive clinical measurements; disclosure or tampering can affect diagnosis and treatment.
+A13, Prescription data (drug, dose, start/end dates, renewals), Data, Not Specified, High, Directly impacts patient medication safety; tampering could cause harm.
+A14, Drug list (NDC codes, names, descriptions), Data, Not Specified, Low, Reference data; availability is important but integrity impact is limited.
+A15, Diagnosis data (ICD-10 code, description, notes, date, diagnosing HCP), Data, Not Specified, High, Critical for treatment history and billing; confidentiality and integrity are paramount.
+A16, ICD-10 code list (standard codes and descriptions), Data, Not Specified, Low, Public standard data; unauthorized modification could cause misdiagnosis or billing errors.
+A17, Password reset email content (temporary password), Data, Not Specified, High, Temporary password in plaintext allows account takeover if intercepted.
+A18, Email alert mechanism (sending emails for password change, appointment status, lockout), System Component, Not Specified, Medium, Compromise could lead to spam, phishing, or failure to deliver critical security notifications.
+A19, Access log view function (UI to query and display logs), System Component, Not Specified, Medium, Flaws could allow unauthorized users to view others’ access logs, violating confidentiality.
+A20, Password policy configuration (min/max length 6-20), Configuration, Not Specified, Medium, Weak policy (e.g., too short) increases risk of brute force attacks.
+A21, Role assignment configuration (list of possible roles and permissions), Configuration, Not Specified, High, Incorrect role definitions could lead to privilege escalation.
+A22, Lockout policy configuration (3 attempts, 60 min lockout, 3 lockouts per 24h ban), Configuration, Not Specified, Medium, Overly permissive policy reduces resistance to brute force; overly strict causes DoS.
+A23, Session timeout configuration (10 minutes inactivity), Configuration, Not Specified, Medium, Longer timeout increases session hijacking window; shorter may impact usability.

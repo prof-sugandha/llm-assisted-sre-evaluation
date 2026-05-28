@@ -1,0 +1,23 @@
+Asset_ID,Asset_Name,Asset_Type,Tools/Techniques,Criticality,Justification
+A1,User Credentials (passwords, Shibboleth tokens),Credential,Shibboleth,High,Compromise leads to unauthorized access and impersonation of faculty or administrators.
+A2,Personal Account Data (email, subscription preferences),Data,Not Specified,Medium,Contains personally identifiable information (email addresses) and user preferences; privacy impact if disclosed.
+A3,Content Files (reports, datasets, publications),Data,Not Specified,High,Research materials may be embargoed, sensitive, or valuable; integrity and confidentiality are critical.
+A4,Metadata (titles, authors, subjects, version names),Data,Not Specified,Medium,Integrity needed for correct discovery, attribution, and version tracking; low confidentiality but high trust impact.
+A5,Embargo Settings (embargo dates, visibility flags),Configuration,Not Specified,High,Tampering can prematurely expose restricted content or lock valid access, violating author/publisher requirements.
+A6,Version History (previous versions, revision records),Data,Not Specified,Medium,Integrity of historical versions is important for reproducibility and audit; tampering could misrepresent scholarly record.
+A7,Licensing Information (CC licenses, reuse rights),Data,Not Specified,Medium,Legal and reuse obligations depend on accurate license display; tampering could cause improper reuse or attribution loss.
+A8,Usage Statistics (download counts, altmetrics),Data,Not Specified,Low,Low confidentiality and integrity impact; primarily used for assessment and buy-in.
+A9,Subscriber List (email addresses of report/dataset subscribers),Data,Not Specified,High,Subscriber emails are personally identifiable information; disclosure violates privacy and could lead to spam or phishing.
+A10,Administrator Permissions (roles, access levels),Configuration,Not Specified,High,Compromise allows full system control, including data tampering, privilege escalation, and denial of service.
+A11,Audit Logs (revision history, uploader identity),Data,Not Specified,Medium,Provides non-repudiation and accountability; tampering or deletion enables repudiation of malicious actions.
+A12,ORCID/ResearcherID Associations,Data,ORCID,Medium,Incorrect association causes misattribution and identity confusion; integrity needed to ensure proper credit.
+A13,Custom Metadata Fields,Configuration,Not Specified,Low,Low impact; primarily affects search and display quality.
+A14,Collection Structure (mappings, aliases, names),Configuration,Not Specified,Low,Availability and navigation impact; low security criticality.
+A15,Redundant Copies (backup storage),System Component,Not Specified,High,Ensures availability and integrity of all assets; loss or corruption defeats preservation goals.
+A16,Export/Import Data Sets (batch records and files),Data,Not Specified,Medium,Batch manipulation can introduce tampered content or malware; integrity of exported and imported data is critical.
+A17,Notification Subscriptions,Data,Not Specified,Low,Low sensitivity; mainly convenience.
+A18,Session State (logged-in status),State,Not Specified,Medium,Session hijacking leads to impersonation and unauthorized actions.
+A19,Release Calendar,Data,Not Specified,Low,Low impact on security; primarily informational.
+A20,OAI-PMH Metadata Harvesting Endpoint,System Component,OAI,Medium,Exposes metadata; misconfiguration can leak restricted metadata or allow denial of service.
+A21,Large File Transfer Mechanism,System Component,Not Specified,Medium,Can be abused for denial of service via resource exhaustion.
+A22,Streaming Media Delivery,System Component,Not Specified,Medium,Denial of service via resource exhaustion or bandwidth saturation.
