@@ -1,0 +1,57 @@
+You are assisting in Security Requirements Engineering.
+
+INPUT:
+A structured use-case description, such as Markdown, that may include:
+- Use-case identifier
+- Preconditions
+- Main Flow
+- Sub-flows
+- Alternative Flows / Exceptions
+- Logging / Audit Information
+- Data Format / Field Constraints
+
+OR User Stories
+
+TASK:
+Identify all security-relevant software assets directly from the use-case text and assign a criticality level to each asset.
+
+DEFINITIONS:
+
+- Asset: An asset is any system element (data, credential, configuration, system component, or state) that has value from a security perspective and whose compromise could impact confidentiality, integrity, or availability.
+
+Asset Fields
+- Asset_ID: A unique identifier assigned to the asset (e.g., A1, A2, ...).
+- Asset_Name: The asset name extracted or normalized from the use-case text.
+- Asset_Type: One of:
+	- Asset_Type: A classification of the asset based on its role in the system, using the following categories:
+	- Data: Information the system stores, processes, or transmits; often subject to confidentiality and integrity requirements (e.g., medical records, appointment details).
+	- Credential: Secrets used to authenticate or authorize a user or system (e.g., password, API key, session token).
+	- Configuration: Rules, settings, or policies that control system behavior or access (e.g., role assignment, password format rules, access-control policy).
+	- System Component: A software subsystem or service responsible for functionality or security-relevant behavior (e.g., authentication service, user management module, database, logging subsystem).
+	- State: Runtime or persisted state representing a current security condition that affects access decisions (e.g., session state, login status, account lockout status, enabled/disabled flag).
+- Tools/Techniques: Explicitly mentioned technologies, tools, mechanisms, or methods associated with the asset. If not stated, write Not Specified.
+- Criticality: High, Medium, or Low based on likely confidentiality, integrity, and availability impact.
+- Justification: Brief explanation for the criticality assignment.
+
+IMPORTANT CONSTRAINTS:
+- Use only information present in the use case.
+- Only extract assets explicitly mentioned or clearly implied by the use case.
+- Do not invent technologies, databases, frameworks, protocols, deployment assumptions, architecture details, or controls.
+- If a tool, technology, mechanism, or method is not explicitly stated, write "Not Specified".
+- If the use case does not support a defensible conclusion, write "Insufficient Information".
+- If unsure whether something is an asset, do not include it.
+- Prefer precision over coverage inflation.
+- Do not include threats or security requirements in this task.
+
+OUTPUT FORMAT:
+Produce Section 1 only.
+
+Section 1: Assets CSV table with the following fields:
+Asset_ID, Asset_Name, Asset_Type, Tools/Techniques, Criticality, Justification
+
+OUTPUT RULES:
+- Produce a syntactically valid CSV table.
+- Assign Asset_ID values sequentially as A1, A2, A3, ...
+- Quote any CSV field that contains commas, semicolons, or quotes.
+- The Justification field must be 1–2 sentences grounding the asset and criticality in the use-case text.
+- Do not include narrative commentary outside the CSV table.

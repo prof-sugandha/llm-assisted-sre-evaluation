@@ -1,0 +1,96 @@
+You are deriving security requirements from an asset-grounded threat model. Use the previous output for the inputs.
+
+INPUTS:
+1. A structured use-case description, such as Markdown or user stories
+2. An asset list containing at least:
+   - Asset_ID
+   - Asset_Name
+   - Asset_Type
+   - Criticality
+3. A threat list containing at least:
+   - Threat_ID
+   - Asset_ID
+   - Contextualized_Asset
+   - Threat_Description
+   - STRIDE_Categories
+   - CAPEC_References, if available
+
+TASK:
+For each identified threat, derive one or more specific, actionable, and testable security requirements that mitigate or reduce the likelihood or impact of the threat and reference the affected asset.
+
+DEFINITIONS:
+
+- Asset: An asset is any system element (data, credential, configuration, system component, or state) that has value from a security perspective and whose compromise could impact confidentiality, integrity, or availability.
+
+Asset Fields
+- Asset_ID: A unique identifier assigned to the asset (e.g., A1, A2, ...).
+- Asset_Name: The asset name extracted or normalized from the use-case text.
+- Asset_Type: One of:
+	- Asset_Type: A classification of the asset based on its role in the system, using the following categories:
+	- Data: Information the system stores, processes, or transmits; often subject to confidentiality and integrity requirements (e.g., medical records, appointment details).
+	- Credential: Secrets used to authenticate or authorize a user or system (e.g., password, API key, session token).
+	- Configuration: Rules, settings, or policies that control system behavior or access (e.g., role assignment, password format rules, access-control policy).
+	- System Component: A software subsystem or service responsible for functionality or security-relevant behavior (e.g., authentication service, user management module, database, logging subsystem).
+	- State: Runtime or persisted state representing a current security condition that affects access decisions (e.g., session state, login status, account lockout status, enabled/disabled flag).
+- Tools/Techniques: Explicitly mentioned technologies, tools, mechanisms, or methods associated with the asset. If not stated, write Not Specified.
+- Criticality: High, Medium, or Low based on likely confidentiality, integrity, and availability impact.
+- Justification: Brief explanation for the criticality assignment.
+
+
+- Threat: A threat describes how a specific asset could be misused, compromised, or attacked in the context of this use case. Threats should be grounded in established attack knowledge (e.g., CAPEC).
+
+Threat Fields
+- Threat_ID: A unique identifier assigned to the threat (e.g., T1, T2, ...).
+- Asset_ID: Identifier of the affected asset.
+- Contextualized_Asset: The specific asset to which the threat applies (including relevant context if available from the use case).
+- Threat_Description: A concise description of how the asset could be compromised in the context of the use-case flow.
+- STRIDE_Categories: One or more applicable STRIDE categories for the same threat, separated by semicolons.
+	Allowed values: Spoofing; Tampering; Repudiation; Information Disclosure; Denial of Service; Elevation of Privilege
+- Maps_to_Use_Case: The use-case identifier where the asset is involved and the threat could realistically occur.
+- Source: The attack knowledge base used to ground the threat, such as "CAPEC".
+- CAPEC_References: Zero, one, or many applicable CAPEC attack patterns. Each entry must include CAPEC ID and CAPEC name, separated by a colon. Multiple entries must be separated by semicolons.
+- CAPEC_Rationale: Brief explanation of why each listed CAPEC mapping is relevant to the threat.
+
+- Security Requirement: A security requirement is a specific, actionable, verifiable statement that mitigates or reduces the likelihood or impact of a threat.
+
+Security Requirement Fields
+- Requirement_ID: Unique identifier for the requirement (e.g., R1, R2, ...).
+- Asset_ID: Identifier of the affected asset.
+- Threat_ID: Identifier of the threat the requirement addresses.
+- Security_Requirement: Specific, testable mitigation statement.
+- Rationale: One-sentence explanation linking the requirement to the threat and asset.
+
+CARDINALITY RULES:
+- One Threat_ID may map to one or many Requirement_IDs.
+- One Requirement_ID must map to exactly one Threat_ID.
+- One Requirement_ID must reference the affected Asset_ID.
+- Do not force one-to-one relationships between threats and requirements.
+- Do not force every threat to have only one requirement.
+- Where multiple requirements are needed for the same threat, create separate requirement entries with the same Threat_ID.
+- An asset may have zero, one, or many security requirements across all associated threats.
+
+IMPORTANT CONSTRAINTS:
+- Use only information present in the use case, asset list, and threat list.
+- Requirements must be implementable and verifiable.
+- Requirements must mitigate or reduce the likelihood or impact of the specific referenced threat.
+- Requirements must reference or clearly apply to the affected asset.
+- Do not invent technologies, tools, frameworks, protocols, deployment assumptions, or architecture details.
+- Express requirements in implementation-agnostic terms unless the use case explicitly specifies a technology.
+- Avoid vague wording such as "secure", "protect", "handle safely", or "ensure security" unless followed by a measurable condition.
+- Do not invent requirements merely to force symmetry across threats.
+- If no defensible requirement can be derived for a threat, write "Insufficient Information" in the Security_Requirement field and explain why in the Rationale field.
+- Preserve traceability by keeping Asset_ID and Threat_ID values exactly consistent with the input lists.
+
+OUTPUT FORMAT:
+Produce Section 3 only.
+
+Section 3: Security Requirements CSV table with the following fields:
+Requirement_ID, Asset_ID, Threat_ID, Security_Requirement, Rationale
+
+OUTPUT RULES:
+- Produce a syntactically valid CSV table.
+- Assign Requirement_ID values sequentially as R1, R2, R3, ...
+- Include as many rows per threat as needed to represent distinct security requirements.
+- Do not restrict any threat to a single requirement.
+- Quote any CSV field that contains commas, semicolons, or quotes.
+- Do not include narrative commentary outside the CSV table.
